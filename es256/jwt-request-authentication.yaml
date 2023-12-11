@@ -1,0 +1,15 @@
+apiVersion: security.istio.io/v1beta1
+kind: RequestAuthentication
+metadata:
+  name: "jwt-example"
+  namespace: foo
+spec:
+  selector:
+    matchLabels:
+      app: httpbin
+  jwtRules:
+  - issuer: "force0.coralworld.co"
+    jwksUri: "https://raw.githubusercontent.com/frk2021/jwt_auth_autn/main/jwks.json"
+    outputClaimToHeaders:
+    - header: "x-jwt-claim-foo"
+      claim: "foo"
